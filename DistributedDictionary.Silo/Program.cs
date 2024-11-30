@@ -1,6 +1,22 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using Orleans.Configuration;
 
-app.MapGet("/", () => "Hello World!");
+var host = Host.CreateDefaultBuilder()
+    .UseOrleans((ctx, silo) =>
+    {
+        silo.UseLocalhostClustering();
+        silo.Configure<ClusterOptions>(options =>
+        {  
+            options.ClusterId = "dev";
+            options.ServiceId = "distributed-dictionary";
+        });
+        silo.UseDashboard();
+        silo.AddMemoryGrainStorage("DefinitionsStorage");
+    })
+    .Build();
 
-app.Run();
+await host.StartAsync();
+
+Console.WriteLine("Press any key to exit...");
+Console.ReadKey();
+
+await host.StopAsync();
