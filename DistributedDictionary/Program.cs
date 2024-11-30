@@ -1,4 +1,6 @@
-using DistributedDictionary.ActorAbstractions.DictionaryEntry;
+using DistributedDictionary;
+using DistributedDictionary.ActorAbstractions.Terms;
+using DistributedDictionary.Terms.GetDefinitionByTerm;
 using Orleans.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
