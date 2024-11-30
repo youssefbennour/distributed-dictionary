@@ -1,10 +1,10 @@
-﻿using HanBaoBao;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Orleans.Hosting;
 using System;
+using HanBaoBaoWeb.Data;
 
 await Host.CreateDefaultBuilder(args)
     .UseOrleans((ctx, siloBuilder) =>

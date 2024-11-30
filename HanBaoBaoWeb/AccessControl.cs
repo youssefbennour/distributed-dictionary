@@ -1,13 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
-using Orleans;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.Serialization;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Orleans;
 
-namespace HanBaoBao
+namespace HanBaoBaoWeb
 {
     internal interface IUserAgentGrain : IGrainWithStringKey
     {

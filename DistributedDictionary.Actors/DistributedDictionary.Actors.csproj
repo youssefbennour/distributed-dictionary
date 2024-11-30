@@ -6,4 +6,21 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Update="Data\hanbaobao.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.2" />
+      <PackageReference Include="Microsoft.Orleans.Runtime" Version="9.0.1" />
+      <PackageReference Include="Microsoft.Orleans.Sdk" Version="9.0.1" />
+      <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DistributedDictionary.ActorAbstractions\DistributedDictionary.ActorAbstractions.csproj" />
+    </ItemGroup>
+
 </Project>

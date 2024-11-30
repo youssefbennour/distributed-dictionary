@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="9.0.1" />
+      <PackageReference Include="Microsoft.Orleans.Sdk" Version="9.0.1" />
     </ItemGroup>
 
 </Project>

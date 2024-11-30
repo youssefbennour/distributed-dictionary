@@ -1,11 +1,11 @@
-﻿using Microsoft.Data.Sqlite;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Common;
 using System.Text.Unicode;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
 
-namespace HanBaoBao
+namespace HanBaoBaoWeb.Data
 {
     /// <summary>
     /// Even still, a separate service such as Solr or ElasticSearch would be used to perform full-text-search.

@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Orleans;
-using System.Threading.Tasks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
+using HanBaoBaoWeb.Data;
+using Microsoft.AspNetCore.Mvc;
+using Orleans;
 
-namespace HanBaoBao
+namespace HanBaoBaoWeb
 {
     [ApiController]
     [Route("api/[controller]")]
