@@ -1,6 +1,8 @@
 using DistributedDictionary;
 using DistributedDictionary.ActorAbstractions.Terms;
+using DistributedDictionary.SearchDefinitionsByQuery;
 using DistributedDictionary.Terms.GetDefinitionByTerm;
+using DistributedDictionary.Terms.UpdateDefinitionByTerm;
 using Orleans.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,14 +25,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapGetDefinitionsByQuery();
 app.MapGetDefinitionByTerm();
+app.MapUpdateDefinitionByTerm();
 
 app.Run();
-
-namespace DistributedDictionary
-{
-    record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-    {
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
-}

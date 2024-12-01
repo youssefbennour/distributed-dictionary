@@ -1,3 +1,4 @@
+using DistributedDictionary.ActorAbstractions.AccessControl;
 using DistributedDictionary.ActorAbstractions.Terms;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,19 @@ internal static class GetDefinitionByTermEndpoint
       "api/definitions/{term}",
       async ([FromRoute] string term, 
           IGrainFactory grainFactory,
+          HttpContext httpContext,
           CancellationToken cancellationToken) =>
       {
-          var termGrain = grainFactory.GetGrain<ITermDefinitionActor>(term);
-          var termDefinition = await termGrain.GetDefinitionAsync();
+          var clientIp = httpContext.Connection.RemoteIpAddress?
+              .MapToIPv4()
+              .ToString();
+          if (clientIp is null)
+          {
+              throw new InvalidOperationException("Cannot process non TCP request");
+          }
+          
+          var userAgentGrain = grainFactory.GetGrain<IUserAgentActor>(clientIp);
+          var termDefinition = await userAgentGrain.GetDefinitionAsync(term);
           return Results.Ok(termDefinition);
       })
        .WithOpenApi(); 

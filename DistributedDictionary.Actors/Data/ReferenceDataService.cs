@@ -77,7 +77,7 @@ public class ReferenceDataService(IConfiguration configuration, IHostEnvironment
         cmd.Parameters.AddWithValue("$term", query);
 
         await using var reader = await cmd.ExecuteReaderAsync(cancellationToken);
-        return await ReadAllAsEntryDefinitionAsync(reader, cancellationToken);
+        return await ReadAllAsTermDefinitionAsync(reader, cancellationToken);
     }
 
     private async Task<List<TermDefinition>> QueryByDefinitionAsync(string query, CancellationToken cancellationToken = default)
@@ -90,7 +90,7 @@ public class ReferenceDataService(IConfiguration configuration, IHostEnvironment
         cmd.Parameters.AddWithValue("$query", query);
 
         await using var reader = await cmd.ExecuteReaderAsync(cancellationToken);
-        return await ReadAllAsEntryDefinitionAsync(reader, cancellationToken);
+        return await ReadAllAsTermDefinitionAsync(reader, cancellationToken);
     }
 
     private static bool IsProbablyCjk(string text)
@@ -122,7 +122,7 @@ public class ReferenceDataService(IConfiguration configuration, IHostEnvironment
         return results;
     }
 
-    private static async Task<List<TermDefinition>> ReadAllAsEntryDefinitionAsync(DbDataReader reader, CancellationToken cancellationToken)
+    private static async Task<List<TermDefinition>> ReadAllAsTermDefinitionAsync(DbDataReader reader, CancellationToken cancellationToken)
     {
         var results = new List<TermDefinition>();
         
