@@ -9,7 +9,7 @@ var host = Host.CreateDefaultBuilder()
         silo.AddMemoryGrainStorage("DefinitionsStorage");
     }).ConfigureServices(services =>
     {
-        services.AddSingleton<ReferenceDataService>();
+        services.AddSingleton<DictionaryPersistence>();
     })
     .Build();
 

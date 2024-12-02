@@ -6,7 +6,7 @@ using DistributedDictionary.Actors.Data;
 namespace DistributedDictionary.Actors.Search;
 
 public sealed class SearchActor(
-    ReferenceDataService referenceDataService,
+    DictionaryPersistence dictionaryPersistence,
     IGrainFactory grainFactory) : Grain, ISearchActor
 {
 
@@ -20,7 +20,7 @@ public sealed class SearchActor(
             return _cachedTermDefinitions;
         }
         var query = this.GetPrimaryKeyString();
-        var headWords = await referenceDataService.QueryHeadwordsByAnyAsync(query);
+        var headWords = await dictionaryPersistence.QueryHeadwordsByAnyAsync(query);
         var termDefinitionTasks = new List<Task<TermDefinition>>();
         headWords.Take(25)
             .ToList()

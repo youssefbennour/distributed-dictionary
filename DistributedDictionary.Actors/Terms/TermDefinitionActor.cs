@@ -8,7 +8,7 @@ namespace DistributedDictionary.Actors.Terms;
 internal sealed class TermDefinitionActor(
     [PersistentState(stateName: "termDefinition", storageName:"DefinitionsStorage")]
     IPersistentState<TermDefinitionState> termDefinitionState,
-    ReferenceDataService referenceDataService) : Grain, ITermDefinitionActor
+    DictionaryPersistence dictionaryPersistence) : Grain, ITermDefinitionActor
 {
     
     public override async Task OnActivateAsync(CancellationToken cancellationToken)
@@ -24,7 +24,7 @@ internal sealed class TermDefinitionActor(
 
     private async Task LoadTermDefinitionIntoStateAsync()
     {
-        var termDefinitions = await referenceDataService
+        var termDefinitions = await dictionaryPersistence
             .QueryByHeadwordAsync(this.GetPrimaryKeyString());
         
         if (termDefinitions.Any() && termDefinitions.FirstOrDefault() is TermDefinition termDefinition)

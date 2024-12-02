@@ -1,20 +1,17 @@
 ﻿using System.Data;
 using System.Data.Common;
-using System.Reflection;
 using System.Text.Unicode;
 using DistributedDictionary.ActorAbstractions.Terms;
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.VisualBasic.FileIO;
 
 namespace DistributedDictionary.Actors.Data;
 
-public class ReferenceDataService(IConfiguration configuration, IHostEnvironment hostEnvironment)
+public class DictionaryPersistence(IHostEnvironment hostEnvironment)
 {
     private readonly string _connectionString = new SqliteConnectionStringBuilder($"Data Source={Path.Combine(
         hostEnvironment.ContentRootPath, 
-        "../DistributedDictionary.Actors/Data/hanbaobao.db")};")
+        "../DistributedDictionary.Actors/Data/dictionary.db")};")
     {
         Mode = SqliteOpenMode.ReadOnly,
         Cache = SqliteCacheMode.Shared,
